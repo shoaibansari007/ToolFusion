@@ -1,0 +1,37 @@
+/* Sidebar custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+/* Main content scrollable on desktop */
+@media (min-width: 768px) {
+  main {
+    height: 100vh;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+  }
+}
+
+main::-webkit-scrollbar {
+  width: 10px;
+}
+main::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+main::-webkit-scrollbar-track {
+  background: transparent;
+}
+.dark main::-webkit-scrollbar-thumb {
+  background: #334155;
+}

@@ -1,0 +1,197 @@
+import React, { useState } from "react";
+import DashboardLayout from "./DashboardLayout";
+import TextEditor from "./TextEditor";
+import StatsPanel from "./StatsPanel";
+import { analyzeText } from "./utils/textUtils";
+import TextSummarizer from "./TextSummarizer";
+import TextDiffTool from "./TextDiffTool";
+import EncryptDecrypt from "./EncryptDecrypt";
+import TextToSpeech from "./TextToSpeech";
+import SpeechToText from "./SpeechToText";
+import Translator from "./Translator";
+import TextExpander from "./TextExpander";
+import JsonFormatter from "./JsonFormatter";
+import Base64Tool from "./Base64Tool";
+import UrlTool from "./UrlTool";
+import MarkdownPreviewer from "./MarkdownPreviewer";
+import RegexTester from "./RegexTester";
+import UuidGenerator from "./UuidGenerator";
+import LoremIpsum from "./LoremIpsum";
+import Notes from "./Notes";
+import TodoList from "./TodoList";
+import ClipboardHistory from "./ClipboardHistory";
+import UnitConverter from "./UnitConverter";
+import TimeZoneConverter from "./TimeZoneConverter";
+import AsciiArt from "./AsciiArt";
+import EmojiPicker from "./EmojiPicker";
+import RandomQuote from "./RandomQuote";
+import PdfTextViewer from "./PdfTextViewer";
+import CsvToTable from "./CsvToTable";
+import "./App.css";
+// Import Lucide icons
+import {
+  FileEdit,
+  Brain,
+  Diff,
+  Lock,
+  Volume2,
+  Mic,
+  Languages,
+  Expand,
+  Code2,
+  Hash,
+  Link2,
+  FileText,
+  Search,
+  Key,
+  File,
+  StickyNote,
+  CheckSquare,
+  ClipboardList,
+  Ruler,
+  Globe,
+  Type,
+  Smile,
+  MessageCircle,
+  FileScan,
+  Table2
+} from 'lucide-react';
+
+// Placeholder components for other tools
+const Placeholder = ({ label }) => (
+  <div className="w-full max-w-2xl text-center text-gray-500 dark:text-gray-300 text-xl py-20">{label} coming soon...</div>
+);
+
+const tools = [
+  { id: "text-editor", label: "Text Editor", icon: <FileEdit strokeWidth={1} /> },
+  { id: "text-summarizer", label: "Text Summarizer", icon: <Brain strokeWidth={1} /> },
+  { id: "text-diff", label: "Text Diff Tool", icon: <Diff strokeWidth={1} /> },
+  { id: "encryption", label: "Encrypt/Decrypt", icon: <Lock strokeWidth={1} /> },
+  { id: "tts", label: "Text to Speech", icon: <Volume2 strokeWidth={1} /> },
+  { id: "stt", label: "Speech to Text", icon: <Mic strokeWidth={1} /> },
+  { id: "translator", label: "Translator", icon: <Languages strokeWidth={1} /> },
+  { id: "expander", label: "Text Expander", icon: <Expand strokeWidth={1} /> },
+  { id: "json", label: "JSON Formatter", icon: <Code2 strokeWidth={1} /> },
+  { id: "base64", label: "Base64 Encode/Decode", icon: <Hash strokeWidth={1} /> },
+  { id: "url", label: "URL Encode/Decode", icon: <Link2 strokeWidth={1} /> },
+  { id: "markdown", label: "Markdown Previewer", icon: <FileText strokeWidth={1} /> },
+  { id: "regex", label: "Regex Tester", icon: <Search strokeWidth={1} /> },
+  { id: "uuid", label: "UUID Generator", icon: <Key strokeWidth={1} /> },
+  { id: "lorem", label: "Lorem Ipsum", icon: <File strokeWidth={1} /> },
+  { id: "notes", label: "Notes", icon: <StickyNote strokeWidth={1} /> },
+  { id: "todo", label: "To-Do List", icon: <CheckSquare strokeWidth={1} /> },
+  { id: "clipboard", label: "Clipboard History", icon: <ClipboardList strokeWidth={1} /> },
+  { id: "unit", label: "Unit Converter", icon: <Ruler strokeWidth={1} /> },
+  { id: "timezone", label: "Time Zone Converter", icon: <Globe strokeWidth={1} /> },
+  { id: "ascii", label: "ASCII Art", icon: <Type strokeWidth={1} /> },
+  { id: "emoji", label: "Emoji Picker", icon: <Smile strokeWidth={1} /> },
+  { id: "quote", label: "Random Quote", icon: <MessageCircle strokeWidth={1} /> },
+  { id: "pdf", label: "PDF/Text Viewer", icon: <FileScan strokeWidth={1} /> },
+  { id: "csv", label: "CSV to Table", icon: <Table2 strokeWidth={1} /> },
+];
+
+function App() {
+  const [selectedTool, setSelectedTool] = useState("text-editor");
+  const [analysis, setAnalysis] = useState(null);
+
+  // Only for Text Editor
+  const handleTextChange = (text) => {
+    setAnalysis(analyzeText(text));
+  };
+
+  let mainPanel = null;
+  switch (selectedTool) {
+    case "text-editor":
+      mainPanel = <>
+        <TextEditor onTextChange={handleTextChange} />
+        <StatsPanel analysis={analysis} />
+      </>;
+      break;
+    case "text-summarizer":
+      mainPanel = <TextSummarizer />;
+      break;
+    case "text-diff":
+      mainPanel = <TextDiffTool />;
+      break;
+    case "encryption":
+      mainPanel = <EncryptDecrypt />;
+      break;
+    case "tts":
+      mainPanel = <TextToSpeech />;
+      break;
+    case "stt":
+      mainPanel = <SpeechToText />;
+      break;
+    case "translator":
+      mainPanel = <Translator />;
+      break;
+    case "expander":
+      mainPanel = <TextExpander />;
+      break;
+    case "json":
+      mainPanel = <JsonFormatter />;
+      break;
+    case "base64":
+      mainPanel = <Base64Tool />;
+      break;
+    case "url":
+      mainPanel = <UrlTool />;
+      break;
+    case "markdown":
+      mainPanel = <MarkdownPreviewer />;
+      break;
+    case "regex":
+      mainPanel = <RegexTester />;
+      break;
+    case "uuid":
+      mainPanel = <UuidGenerator />;
+      break;
+    case "lorem":
+      mainPanel = <LoremIpsum />;
+      break;
+    case "notes":
+      mainPanel = <Notes />;
+      break;
+    case "todo":
+      mainPanel = <TodoList />;
+      break;
+    case "clipboard":
+      mainPanel = <ClipboardHistory />;
+      break;
+    case "unit":
+      mainPanel = <UnitConverter />;
+      break;
+    case "timezone":
+      mainPanel = <TimeZoneConverter />;
+      break;
+    case "ascii":
+      mainPanel = <AsciiArt />;
+      break;
+    case "emoji":
+      mainPanel = <EmojiPicker />;
+      break;
+    case "quote":
+      mainPanel = <RandomQuote />;
+      break;
+    case "pdf":
+      mainPanel = <PdfTextViewer />;
+      break;
+    case "csv":
+      mainPanel = <CsvToTable />;
+      break;
+    default:
+      mainPanel = <div className="w-full max-w-2xl text-center text-gray-500 dark:text-gray-300 text-xl py-20">Tool coming soon...</div>;
+  }
+
+  return (
+    <DashboardLayout
+      tools={tools}
+      selectedTool={selectedTool}
+      onSelectTool={setSelectedTool}
+    >
+      {mainPanel}
+    </DashboardLayout>
+  );
+}
+
+export default App;

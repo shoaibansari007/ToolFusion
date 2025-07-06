@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Remove conflicting styles for dark mode. Use Tailwind classes only. */
+
+/* Custom sidebar scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1; /* slate-200 */
+  border-radius: 8px;
+}
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: #94a3b8; /* slate-400 */
+}
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #334155; /* slate-800 */
+}
+.dark .custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: #64748b; /* slate-500 */
+}
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+.dark .custom-scrollbar {
+  scrollbar-color: #334155 transparent;
+}

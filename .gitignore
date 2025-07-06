@@ -1,0 +1,24 @@
+# node_modules
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# dotenv environment variables file
+.env
+
+# Vite output folder
+dist/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDEs / Editors
+.vscode/
+.idea/
+
+# package-lock file (optional, if you don't want to push)
+package-lock.json
